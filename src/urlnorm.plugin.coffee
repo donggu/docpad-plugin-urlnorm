@@ -9,21 +9,22 @@ module.exports = (BasePlugin) ->
         this.substring(0, start) + what + this.substring(end)
 
     config =
-        enable: true
-        documentPath: ['/']
-        assetPath: ['/']       # you can normalize even asset and layout files
-        layoutPath: ['/']
-
+        exceptions: ['index.html', 'robot.txt']
         normalizeDirs: true
         capitalizeDirs: true  # aaa/bBb/cCc.html -> Aaa/Bbb/cCc.html. Used when normalizeDirs == true
         normalizeFiles: true
         capitalizeFiles: true # aaa/bBb/cCc.html -> aaa/bBb/Ccc.html. Used when normalizeDirs == true
 
-        normalizeExtensions: false # rare!
         mapping:
             ' ':'-',           # ' ':'' to just remove spaces
             '/':null           # use null to throw error to prevent silent failures
-        normalizeLinks: true   # <a href='Projects'> -> <a href='projects'>
+
+
+        # TODO
+        enable: true
+        documentPath: ['/']
+        assetPath: ['/']       # you can normalize even asset and layout files
+        layoutPath: ['/']
         errorOnConflicts: true # 'A B C.html.md' vs 'a-b-c.html.eco'
 
     normalizeName = (name, capitalize, maps) ->
@@ -53,6 +54,8 @@ module.exports = (BasePlugin) ->
         if path.indexOf('://')==-1 # relative path
             list = path.split('/')
             fileName = list.pop()
+            if fileName in config.exceptions
+                return path
 
             if config.normalizeFiles
                 fileName = normalizeName(fileName, config.capitalizeFiles, config.mapping)
@@ -85,7 +88,6 @@ module.exports = (BasePlugin) ->
             {extension, file, content} = opts
 
             if file.type is 'document' and extension is 'html'
-
                 $ = cheerio.load(content)
                 $('a').each( (i,element) ->
                     if href = $(this).attr('href')
