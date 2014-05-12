@@ -60,7 +60,7 @@ module.exports = (BasePlugin) ->
             if config.normalizeFiles
                 fileName = normalizeName(fileName, config.capitalizeFiles, config.mapping)
             if config.normalizeDirs
-                _.map(list, (dirName) ->
+                list = _.map(list, (dirName) ->
                     normalizeName(dirName, config.capitalizeDirs, config.mapping)
                 )
 

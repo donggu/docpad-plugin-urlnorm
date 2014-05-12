@@ -1,6 +1,6 @@
 {
     "name": "docpad-plugin-urlnorm",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "DocPad plugin that normalizes urls",
     "homepage": "https://github.com/donggu/docpad-plugin-urlnorm",
     "keywords": [
