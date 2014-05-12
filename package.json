@@ -1,0 +1,41 @@
+{
+    "name": "docpad-plugin-urlnorm",
+    "version": "2.0.1",
+    "description": "DocPad plugin that normalizes urls",
+    "homepage": "https://github.com/donggu/docpad-plugin-urlnorm",
+    "keywords": [
+        "urlnorm",
+        "docpad",
+        "docpad-plugin",
+        "docpad-plugin-urlnorm",
+        "gollum",
+        "wiki",
+        "markup"
+    ],
+    "author": "github.com/donggu",
+    "maintainers": [
+        "http://github.com/donggu"
+    ],
+    "contributors": [
+        "http://github.com/donggu"
+    ],
+    "bugs": {
+        "url": "https://github.com/donggu/docpad-plugin-urlnorm/issues"
+    },
+    "repository" : {
+        "type": "git",
+        "url": "https://github.com/donggu/docpad-plugin-urlnorm.git"
+    },
+    "engines" : {
+        "node": ">=0.8"
+    },
+    "peerDependencies": {
+        "docpad": "6"
+    },
+    "dependencies": {
+        "underscore":"1.6.0",
+        "cheerio":"0.15.0",
+        "coffee-script":"1.7.1"
+    },
+    "main": "./src/urlnorm.plugin.coffee"
+}
