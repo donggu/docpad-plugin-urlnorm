@@ -9,7 +9,7 @@ module.exports = (BasePlugin) ->
         this.substring(0, start) + what + this.substring(end)
 
     config =
-        exceptions: ['index.html', 'robot.txt']
+        exceptions: ['index.html', 'robot.txt', 'favicon.ico']
         normalizeDirs: true
         capitalizeDirs: true  # aaa/bBb/cCc.html -> Aaa/Bbb/cCc.html. Used when normalizeDirs == true
         normalizeFiles: true
@@ -75,11 +75,13 @@ module.exports = (BasePlugin) ->
         name: 'urlnorm'
 
         renderBefore: (opts) ->
-            c = @docpad.getCollection("documents")
             outRoot = @docpad.config.outPath
-            c.forEach (document) ->
+            rename = (document) ->
                 path = document.get('relativeOutPath')
                 document.setMeta('outPath', outRoot + "/" + normalize(path))
+
+            @docpad.getCollection("documents").forEach rename
+            @docpad.getCollection("files").forEach rename
             @
 
         renderDocumentPriority: 400 # should run after all the placeholders in html are processed
