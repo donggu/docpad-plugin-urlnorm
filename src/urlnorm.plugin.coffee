@@ -81,7 +81,7 @@ module.exports = (BasePlugin) ->
                 document.setMeta('outPath', outRoot + "/" + normalize(path))
 
             @docpad.getCollection("documents").forEach rename
-            @docpad.getCollection("files").forEach rename
+            # @docpad.getCollection("files").forEach rename
             @
 
         renderDocumentPriority: 400 # should run after all the placeholders in html are processed
@@ -95,10 +95,10 @@ module.exports = (BasePlugin) ->
                     if href = $(this).attr('href')
                         $(this).attr('href', normalize(href) )
                 )
-                $('img').each( (i,element) ->
-                    if src = $(this).attr('src')
-                        $(this).attr('src', normalize(src) )
-                )
+                # $('img').each( (i,element) ->
+                #     if src = $(this).attr('src')
+                #         $(this).attr('src', normalize(src) )
+                # )
                 opts.content = $.html()
 
             next()
